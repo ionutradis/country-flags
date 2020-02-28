@@ -1,0 +1,30 @@
+{
+    "name": "countries/flags",
+    "description": "Pack of country flags along with multiple formats",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Radis Ionut",
+            "email": "ionut.radis@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files":
+            [
+                "src/config/helpers.php"
+            ]
+        ,
+        "psr-4": {
+            "countries\\flags\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "countries\\flags\\CountryFlagsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
