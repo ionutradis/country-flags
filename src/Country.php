@@ -1,19 +1,23 @@
 <?php
 namespace countries\flags;
 class Country {
-    private static $countries = [];
+    private $countries;
+    public $code, $flag;
 
-    public function __construct()
+    public function __construct($code = '')
     {
+        if(strlen($code) > 0) {
+            $this->code = $code;
+        }
         $this->loadCountries();
     }
 
-    public static function getCountryName($code) {
-        return self::$countries[strtoupper($code)];
+    public function getCountryName() {
+        return $this->countries[strtoupper($this->code)] ?? null;
     }
 
-    public static function getFlag($country_code) {
-        return file_exists($file = __DIR__.'/resources/assets/countries/'.mb_strtolower($country_code).'.svg') ? file_get_contents($file) : null;
+    public function getFlag() {
+        return file_exists($file = __DIR__.'/resources/assets/countries/'.mb_strtolower($this->code).'.svg') ? file_get_contents($file) : null;
     }
 
     private function loadCountries() {
