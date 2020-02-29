@@ -1,7 +1,23 @@
 <?php
+namespace countries\flags;
+class Country {
+    private static $countries = [];
 
-    return [
-        'countries' => [
+    public function __construct()
+    {
+        $this->loadCountries();
+    }
+
+    public static function getCountryName($code) {
+        return self::$countries[strtoupper($code)];
+    }
+
+    public static function getFlag($country_code) {
+        return file_exists($file = __DIR__.'/resources/assets/countries/'.mb_strtolower($country_code).'.svg') ? file_get_contents($file) : null;
+    }
+
+    private function loadCountries() {
+        $this->countries = [
             'AD' => 'Andorra',
             'AE' => 'United Arab Emirates',
             'AF' => 'Afghanistan',
@@ -258,7 +274,7 @@
             'ZA' => 'South Africa',
             'ZM' => 'Zambia',
             'ZW' => 'Zimbabwe',
-        ],
-    ];
-
+        ];
+    }
+}
 ?>
